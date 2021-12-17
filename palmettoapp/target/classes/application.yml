@@ -1,0 +1,18 @@
+spring:
+  json:
+    use:
+      type:
+        headers: false
+  kafka:
+    consumer:
+      bootstrap-servers: localhost:9092
+      auto-offset-reset: earliest
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: palmetto.kafkamapper.KafkaOrderDeserializer
+      properties:
+        spring.json.trusted.packages: "*"
+    producer:
+      group-id: from_palmetto_to_courier
+      bootstrap-servers: localhost:9092
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: palmetto.kafkamapper.KafkaOrderSerializer
